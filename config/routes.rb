@@ -1,26 +1,14 @@
 Rails.application.routes.draw do
-  namespace :public do
-    get 'cart_items/index'
-    get 'cart_items/update'
-    get 'cart_items/destroy'
-    get 'cart_items/destroy_all'
-    get 'cart_items/create'
+ namespace :public do
+  resources :cart_items, only: [:index, :create, :update, :destroy] do
+    collection do
+      delete :destroy_all
+    end
   end
-  namespace :public do
-    get 'items/index'
-    get 'items/show'
-  end
-
-  scope module: :public do
-   resources :items, only: %i[index show]
-   resources :cart_items, only: %i[index create destroy destroy_all update ] do
-     member do
-       patch 'increase'
-       patch 'decrease'
-     end
-   end
+  resources :items, only: [:index, :show]
  end
-  devise_for :customers
-  devise_for :users
+
+ devise_for :customers
+ devise_for :users
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end

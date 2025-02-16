@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2025_02_16_013805) do
+ActiveRecord::Schema.define(version: 2025_02_16_050931) do
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -49,6 +49,7 @@ ActiveRecord::Schema.define(version: 2025_02_16_013805) do
     t.index ["customer_id"], name: "index_cart_items_on_customer_id"
     t.index ["item_id"], name: "index_cart_items_on_item_id"
   end
+
   create_table "customers", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
@@ -70,7 +71,7 @@ ActiveRecord::Schema.define(version: 2025_02_16_013805) do
   end
 
   create_table "items", force: :cascade do |t|
-    t.integer "genre_id", null: false
+    t.integer "genre", null: false
     t.string "name", null: false
     t.text "introduction", null: false
     t.integer "price_excluding_tax", null: false
@@ -95,5 +96,4 @@ ActiveRecord::Schema.define(version: 2025_02_16_013805) do
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
   add_foreign_key "cart_items", "customers"
   add_foreign_key "cart_items", "items"
-  add_foreign_key "items", "genres"
 end

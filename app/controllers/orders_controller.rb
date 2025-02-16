@@ -1,5 +1,5 @@
 class OrdersController < ApplicationController
-  before_action :authenticate_customer!, only: [:new, :confirm, :create, :index, :show, :thanks]
+  before_action :authenticate_customer!, only:[:new, :confirm, :create, :index, :show, :thanks]
 
   def new # 注文情報入力画面(支払方法・配送先の選択)/注文確定処理
     # viweページのみ
@@ -23,13 +23,13 @@ class OrdersController < ApplicationController
     # 配送先の指定
     @address_type = params[:order][:address_type]
     case @address_type
-    when "member_address" # 会員登録の住所に配送
+    when "customer_address" # 会員登録の住所に配送
       @selected_address = current_member.post_code + " " + current_member.address + " " + current_member.last_name + current_member.first_name
     when "registered_address" # 配送先登録済みの住所に配送
       unless params[:order][:registered_address_id] == ""
-        selected = Address.find(params[:order][:registered_address_id]
+        selected = Address.find(params[:order][:registered_address_id])
         @selected_address = selected.post_code + " " + selected.address + " " + selected.name
-      else	 
+      else
         render :new
       end
     when "new_address" #新たな配送先住所に配送
@@ -65,39 +65,37 @@ class OrdersController < ApplicationController
     
     address_type = params[:order][:address_type]
     case address_type
-  when "member_address"
-    @order.post_code = current_member.post_code
-    @order.address = current_member.address
-    @order.name = current_member.last_name + current_member.first_name
-  when "registered_address"
-    Addresse.find(params[:order][:registered_address_id])
-    selected = Addresse.find(params[:order][:registered_address_id])
-    @order.post_code = selected.post_code
-    @order.address = selected.address
-    @order.name = selected.name
-  when "new_address"
-    @order.post_code = params[:order][:new_post_code]
-    @order.address = params[:order][:new_address]
-    @order.name = params[:order][:new_name]
-  end
-  
-  if @order.save
-    if @order.status == 0
-      @cart_items.each do |cart_item|
-        OrderDetail.create!(order_id: @order.id, item_id: cart_item.item.id, price: cart_item.item.price, quantity: cart_item.quantity, making_status: 0)
-      end
-    else
-      @cart_items.each do |cart_item|
-        OrderDetail.create!(order_id: @order.id, item_id: cart_item.item.id, price: cart_item.item.price, quantity: cart_item.quantity, making_status: 1)
-      end
+    when "customer_address"
+      @order.post_code = current_member.post_code
+      @order.address = current_member.address
+      @order.name = current_member.last_name + current_member.first_name
+    when "registered_address"
+      Addresse.find(params[:order][:registered_address_id])
+      selected = Addresse.find(params[:order][:registered_address_id])
+      @order.post_code = selected.post_code
+      @order.address = selected.address
+      @order.name = selected.name
+    when "new_address"
+      @order.post_code = params[:order][:new_post_code]
+      @order.address = params[:order][:new_address]
+      @order.name = params[:order][:new_name]
     end
-    @cart_items.destroy_all
-    redirect_to complete_orders_path
-  else
-    render :items
-  end
-end    
-
+  
+    if @order.save
+      if @order.status == 0
+        @cart_items.each do |cart_item|
+          OrderDetail.create!(order_id: @order.id, item_id: cart_item.item.id, price: cart_item.item.price, quantity: cart_item.quantity, making_status: 0)
+        end
+      else
+        @cart_items.each do |cart_item|
+          OrderDetail.create!(order_id: @order.id, item_id: cart_item.item.id, price: cart_item.item.price, quantity: cart_item.quantity, making_status: 1)
+        end
+      end
+      @cart_items.destroy_all
+      redirect_to complete_orders_path
+    else
+      render :items
+    end   
   end
 
   def index # 注文履歴画面

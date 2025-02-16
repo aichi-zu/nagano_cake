@@ -10,4 +10,7 @@ class Public::ItemsControllerTest < ActionDispatch::IntegrationTest
     get public_items_show_url
     assert_response :success
   end
+  # test "the truth" do
+  #   assert true
+  # end
 end

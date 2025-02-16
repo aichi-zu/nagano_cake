@@ -1,5 +1,10 @@
 class OrdersController < ApplicationController
+  before_action :authenticate_customer!, only: [:new, :confirm, :create, :index, :show, :thanks]
+
   def new
+  end
+
+  def create
   end
 
   def confirm

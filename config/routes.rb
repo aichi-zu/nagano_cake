@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-
+  devise_for :customers
   devise_for :users
 
   resources :orders, only:[:new, :create, :index, :show] do

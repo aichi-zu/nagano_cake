@@ -7,7 +7,6 @@ class OrdersController < ApplicationController
   end
 
   def confirm # 注文情報確認画面
-              # ★カート商品の変数確認
     @cart_items = CartItem.where(member_id: current_member.id)
     @shipping_fee = 800
     @selected_payment_method = params[:order][:payment_method]
@@ -42,7 +41,6 @@ class OrdersController < ApplicationController
   end
 
   def create # 注文情報入力画面(支払方法・配送先の選択)/注文確定処理
-             # ★カート商品の変数確認
     @order = Order.new
     @order.customer_id = current_customer.id
     @order.shipping_fee = 800
@@ -103,7 +101,8 @@ class OrdersController < ApplicationController
   end
 
   def show # 注文履歴詳細画面
-    @order = Order.find(params[:id])
+           # ★findの値を1に仮設定
+    @order = Order.find(1)
     @order_details= OrderDetail.where(order_id: @order.id)
   end
 

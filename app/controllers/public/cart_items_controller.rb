@@ -1,15 +1,22 @@
 class Public::CartItemsController < ApplicationController
  before_action :authenticate_customer!
   def index
+    @cart_items = current_customer.cart_items.includes(:item)
+    @total_price = @cart_items.sum { |cart_item| cart_item.item.price_excluding_tax * cart_item.amount * 1.1 }
   end
 
   def update
   end
 
   def destroy
+   cart_item = CartItem.find(params[:id])
+   cart_item.destroy
+   redirect_to public_cart_items_path, notice: "カートから商品を削除しました"
   end
 
   def destroy_all
+   current_customer.cart_items.destroy_all
+   redirect_to public_cart_items_path, notice: "カートを空にしました"
   end
 
   def create

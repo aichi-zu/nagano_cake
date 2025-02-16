@@ -8,6 +8,13 @@ Rails.application.routes.draw do
   resources :items, only: [:index, :show]
  end
 
+ resources :orders do
+  collection do
+    get :confirm
+    get :thanks
+  end
+ end
+
  devise_for :customers
  devise_for :users
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html

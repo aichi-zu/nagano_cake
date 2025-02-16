@@ -1,0 +1,37 @@
+<%# 動的ヘッダーの部分テンプレートファイル　%>
+
+<header>
+  <nav class = "navbar navbar-expand-lg navbar-dark bg-dark">
+    <div class = container>
+
+      <a class = "navbar-brand" href = "/">
+        <span>ながのCAKE(仮)</span>
+      </a>
+
+      <button class="navbar-toggler collapsed" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse" id="navbarNavDropdown">
+        <ul class="navbar-nav ml-auto">
+
+          <!-- Adminログイン時のヘッダー -->
+          <% if admin_signed_in? %>
+            <li class = "text-light">管理者</li>
+
+          <!-- Customerログイン時のヘッダー -->
+          <% elsif customer_signed_in? %>
+            <li class = "text-light">顧客</li>
+
+          <!-- 非ログイン時のヘッダー -->
+          <% else %>
+            <li class = "text-light">非ログイン</li>
+
+          <% end %>
+
+        </ul>
+      </div>
+
+    </div>
+  </nav>
+</header>

@@ -1,12 +1,12 @@
 <h3>注文情報入力</h3>
-<%= form_with model: Order.new, url: confirm_order_path, method: :get do |f|  %>
+<%= form_with model: Order.new, url: '/orders/confirm', method: :get do |f|  %>
 
   <h4>支払い方法</h4>
-  <%= f.radio_button :pay_method, :credit_card, checked: true %>
-  <%= f.label :pay_method, Order.pay_methods_i18n[:credit_card], {value: :credit_card} %>
+  <%= f.radio_button :payment_method, :credit_card, checked: true %>
+  <%= f.label :payment_method, Order.payment_method_i18n[:credit_card], {value: :credit_card} %>
   <br>
-  <%= f.radio_button :pay_method, :transfer %>
-  <%= f.label :pay_method, Order.pay_methods_i18n[:transfer], {value: :transfer} %>
+  <%= f.radio_button :payment_method, :transfer %>
+  <%= f.label :payment_method, Order.payment_method_i18n[:transfer], {value: :transfer} %>
 
   <h4>お届け先</h4>
   <%= f.radio_button :address_type, "customer_address", checked: true %>

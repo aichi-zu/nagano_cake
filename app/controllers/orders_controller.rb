@@ -56,8 +56,8 @@ class OrdersController < ApplicationController
     @cart_items_price = ary.sum
     @order.total_price = @order.shipping_fee + @cart_items_price
 
-    @order.pay_method = params[:order][:pay_method]
-    if @order.pay_method == "credit_card"
+    @order.payment_method = params[:order][:payment_method]
+    if @order.payment_method == "credit_card"
       @order.status = 1
     else
       @order.status = 0

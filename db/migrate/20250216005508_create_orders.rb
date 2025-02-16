@@ -11,5 +11,6 @@ class CreateOrders < ActiveRecord::Migration[6.1]
       t.integer "status", null: false
       t.timestamps
     end
+    add_index :orders, :customer_id
   end
 end

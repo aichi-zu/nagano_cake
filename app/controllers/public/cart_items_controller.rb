@@ -17,12 +17,12 @@ class Public::CartItemsController < ApplicationController
   def destroy
    cart_item = CartItem.find(params[:id])
    cart_item.destroy
-   redirect_to public_cart_items_path, notice: "カートから商品を削除しました"
+   redirect_to cart_items_path, notice: "カートから商品を削除しました"
   end
 
   def destroy_all
    current_customer.cart_items.destroy_all
-   redirect_to public_cart_items_path, notice: "カートを空にしました"
+   redirect_to cart_items_path, notice: "カートを空にしました"
   end
 
   def create
@@ -36,7 +36,7 @@ class Public::CartItemsController < ApplicationController
       @cart_item.save
     end
 
-    redirect_to public_cart_items_path, notice: "カートに追加しました"
+    redirect_to cart_items_path, notice: "カートに追加しました"
   end
 
   private

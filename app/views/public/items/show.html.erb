@@ -1,5 +1,5 @@
 <h1>商品詳細ページ</h1>
-<%= form_with url: public_cart_items_path, method: :post, model: @cart_item do |f| %>
+<%= form_with url: cart_items_path, method: :post, model: @cart_item do |f| %>
   <%= f.hidden_field :item_id, value: @item.id %>
   <p><%= @item.name %></p>
   <p><%= @item.introduction %></p>

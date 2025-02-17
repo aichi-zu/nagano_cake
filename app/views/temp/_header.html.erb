@@ -1,0 +1,109 @@
+<%# 動的ヘッダーの部分テンプレートファイル　%>
+
+<header>
+  <nav class = "navbar navbar-expand-lg navbar-dark bg-dark">
+    <div class = container>
+
+      <a class = "navbar-brand" href = "/">
+        <span>ながのCAKE(仮)</span>
+      </a>
+
+      <button class="navbar-toggler collapsed" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse" id="navbarNavDropdown">
+        <ul class="navbar-nav ml-auto">
+
+          <!-- Adminログイン時のヘッダー -->
+          <% if admin_signed_in? %>
+            <li class="nav-item">
+              <a class = "nav-link text-light">
+                商品一覧
+              </a>
+            </li>
+
+            <li class="nav-item">
+              <a class = "nav-link text-light">
+                会員一覧
+              </a>
+            </li>
+
+            <li class="nav-item">
+              <a class = "nav-link text-light">
+                注文履歴一覧
+              </a>
+            </li>
+
+            <li class="nav-item">
+              <a class = "nav-link text-light">
+                ジャンル一覧
+              </a>
+            </li>
+
+            <li class="nav-item">
+              <a class = "nav-link text-light" href = "<%= destroy_admin_session_path %>" data-method = "delete">
+                ログアウト
+              </a>
+            </li>
+
+          <!-- Customerログイン時のヘッダー -->
+          <% elsif customer_signed_in? %>
+            <li class="nav-item">
+              <a class = "nav-link text-light">
+                マイページ
+              </a>
+            </li>
+
+            <li class="nav-item">
+              <a class = "nav-link text-light">
+                商品一覧
+              </a>
+            </li>
+
+            <li class="nav-item">
+              <a class = "nav-link text-light">
+                カート
+              </a>
+            </li>
+
+            <li class="nav-item">
+              <a class = "nav-link text-light" href = "<%= destroy_customer_session_path %>" data-method = "delete">
+                ログアウト
+              </a>
+            </li>
+
+          <!-- 非ログイン時のヘッダー -->
+          <% else %>
+            <li class="nav-item">
+              <a class = "nav-link text-light">
+                About
+              </a>
+            </li>
+
+            <li class="nav-item">
+              <a class = "nav-link text-light">
+                商品一覧
+              </a>
+            </li>
+
+            <li class="nav-item">
+              <a class = "nav-link text-light">
+                新規登録
+              </a>
+            </li>
+
+            <li class="nav-item">
+              <a class = "nav-link text-light">
+                ログイン
+              </a>
+            </li>
+
+          <% end %>
+
+        </ul>
+      </div>
+
+    </div>
+  </nav>
+</header>

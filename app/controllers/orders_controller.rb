@@ -47,12 +47,12 @@ class OrdersController < ApplicationController
     @cart_items = CartItem.where(customer_id: current_customer.id)
 
     # 商品小計・送料の計算viewに情報なし。必要？
-    ary = []
-    @cart_items.each do |cart_item|
-      ary << cart_item.item.price*cart_item.quantity
-    end
-    @cart_items_price = ary.sum
-    @order.total_price = @order.shipping_fee + @cart_items_price
+    #ary = []
+    #  @cart_items.each do |cart_item|
+    #    ary << cart_item.item.price*cart_item.quantity
+    #  end
+    #  @cart_items_price = ary.sum
+    #  @order.total_price = @order.shipping_fee + @cart_items_price
 
     @order.payment_method = params[:order][:payment_method]
     if @order.payment_method == "credit_card"
@@ -90,14 +90,14 @@ class OrdersController < ApplicationController
         end
       end
       @cart_items.destroy_all
-      redirect_to complete_orders_path
+      redirect_to thanks_order_path
     else
       render :items
     end   
   end
 
   def index # 注文履歴画面
-    @orders = Order.where(member_id: current_member.id).order(created_at: :desc)
+    @orders = Order.where(customer_id: current_customer.id).order(created_at: :desc)
   end
 
   def show # 注文履歴詳細画面

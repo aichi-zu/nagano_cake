@@ -1,4 +1,17 @@
 Rails.application.routes.draw do
+  resources :cart_items, controller: 'public/cart_items', only: [:index, :create, :update, :destroy] do
+    collection do
+      delete :destroy_all
+    end
+  end
+  resources :items, controller: 'public/items', only: [:index, :show]
+
+  resources :orders do
+   collection do
+    get :confirm
+    get :thanks
+   end
+  end
 
   resources :orders, controller: 'public/orders', only:[:new, :create, :index, :show] do
     member do
@@ -8,7 +21,6 @@ Rails.application.routes.draw do
   end
   
   resources :addresses, only: [:index, :create, :edit, :update, :destroy]
-
 
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 

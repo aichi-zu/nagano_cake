@@ -38,7 +38,8 @@ ActiveRecord::Schema.define(version: 2025_02_16_133102) do
     t.bigint "blob_id", null: false
     t.string "variation_digest", null: false
     t.index ["blob_id", "variation_digest"], name: "index_active_storage_variant_records_uniqueness", unique: true
-    
+  end
+
   create_table "addresses", force: :cascade do |t|
     t.integer "customer_id", null: false
     t.string "post_code", null: false

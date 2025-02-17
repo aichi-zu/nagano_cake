@@ -2,6 +2,6 @@
 
 <% @items.each do |item| %>
   <div>
-    <%= link_to item.name, public_item_path(item) %>
+    <%= link_to item.name, item_path(item) %>
   </div>
 <% end %>

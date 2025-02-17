@@ -1,7 +1,4 @@
 Rails.application.routes.draw do
-  get 'addresses/index'
-  get 'addresses/create'
-  get 'addresses/edit'
   devise_for :customers
   devise_for :users
 
@@ -11,5 +8,7 @@ Rails.application.routes.draw do
       get 'thanks'
     end
   end
+  
+  resources :addresses, only:[:index, :create, :edit, :update, :destroy]
 
 end

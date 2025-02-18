@@ -7,7 +7,7 @@ Rails.application.routes.draw do
   resources :items, controller: 'public/items', only: [:index, :show]
 
   resources :orders, controller: 'public/orders', only:[:new, :create, :index, :show] do
-    member do
+    collection do
       post 'confirm'
       get 'thanks'
     end

@@ -10,12 +10,17 @@
   <% @cart_items.each do |cart_item| %>
     <tr>
       <td>
+      <!-- 画像設定なし回避 -->
+      <% if cart_item.item.image.present? %>
         <%= image_tag cart_item.item.image, size: "100x80" %>
+        <% else %>
+        <p>画像なし</p>
+      <% end %>
         <strong><%= cart_item.item.name %></strong>
       </td>
-      <td><%= cart_item.item.price %></td>
-      <td><%= cart_item.quantity %></td>
-      <td><%= cart_item.item.price*cart_item.quantity %></td>
+      <td><%= cart_item.item.price_excluding_tax %></td>
+      <td><%= cart_item.amount %></td>
+      <td><%= cart_item.item.price_excluding_tax*cart_item.amount %></td>
     </tr>
   <% end %>
 </table>
@@ -36,8 +41,7 @@
 </table>
 
 <h4>支払い方法</h4>
-
-<% if @selected_pay_method == "credit_card" %>
+<% if @selected_payment_method == "credit_card" %>
   クレジットカード
 <% else %>
   銀行振込
@@ -46,10 +50,9 @@
 <h4>お届け先</h4>
 <%= @selected_address %>
 
-<%= form_with url: orders_path, method: :post do %>
-
   <!-- ユーザーが入力することなく、サーバー側にデータを送信 -->
-  <%= hidden_field_tag 'order[pay_method]', @selected_pay_method %>
+<%= form_with url: orders_path, method: :post do %>
+  <%= hidden_field_tag 'order[payment_method]', @selected_payment_method %>
   <%= hidden_field_tag 'order[address_type]', @address_type %>
 
   <% if @address_type == "registered_address" %>

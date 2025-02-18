@@ -1,12 +1,11 @@
 class Public::ItemsController < ApplicationController
-  before_action :authenticate_customer! 
 
   def index
       @items = Item.all
     if current_customer
       @cart_items = CartItem.where(customer_id: current_customer.id)
     else
-        @cart_items = [] 
+        @cart_items = []
     end
   end
 

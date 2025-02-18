@@ -82,15 +82,15 @@ class Public::OrdersController < ApplicationController
       session[:order_id] = @order.id # OrderのIDをセッションに保存
       if @order.status == 0
         @cart_items.each do |cart_item|
-          OrderDetail.create!(order_id: @order.reload.id, item_id: cart_item.item.item_id, price: cart_item.purchase_price, amount: cart_item.quantity, making_status: 0)
+          OrderDetail.create!(order_id: @order.reload.id, item_id: cart_item.item.id, purchase_price: cart_item.item.price_excluding_tax, quantity: cart_item.amount, status: 0)
         end
       else
         @cart_items.each do |cart_item|
-          OrderDetail.create!(order_id: @order.reload.id, item_id: cart_item.item.item_id, price: cart_item.purchase_price, amount: cart_item.quantity, making_status: 1)
+          OrderDetail.create!(order_id: @order.reload.id, item_id: cart_item.item.id, purchase_price: cart_item.item.price_excluding_tax, quantity: cart_item.amount, status: 1)
         end
       end
       @cart_items.destroy_all
-      redirect_to thanks_order_path
+      redirect_to thanks_orders_path
     else
       render :items
     end   

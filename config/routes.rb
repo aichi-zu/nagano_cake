@@ -1,5 +1,12 @@
 Rails.application.routes.draw do
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
+  
+  #顧客情報
+  get '/customers/my_page', to: 'public/customers#show'
+  get '/customers/information/edit', to: 'public/customers#edit'
+  patch '/customers/information', to: 'public/customers#update'
+  get '/customers/unsubscribe', to: 'public/customers#unsubscribe'
+  patch '/customers/withdraw', to: 'public/customers#withdraw'
 
   # カート内商品
   resources :cart_items, controller: 'public/cart_items', only: [:index, :create, :update, :destroy] do
@@ -43,7 +50,7 @@ Rails.application.routes.draw do
     registrations: "public/registrations",
     sessions: 'public/sessions'
   }
-  get "/customers/my_page", to: "public/customers#show", as: "customer/my_page"
+ 
   get "/about", to: "public/homes#about", as: "about"
 
   devise_for :users

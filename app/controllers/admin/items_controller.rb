@@ -23,6 +23,21 @@ class Admin::ItemsController < ApplicationController
     end
   end
 
+  def edit
+    @item = Item.find(params[:id])
+    @genres = Genre.all
+  end
+
+  def update
+    @item = Item.find(params[:id])
+    if @item.update(item_params)
+      redirect_to admin_item_path(@item), notice: "商品情報を更新しました"
+    else
+      @genres = Genre.all
+      render :edit
+    end
+  end
+
   private
 
   def item_params

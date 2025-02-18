@@ -8,6 +8,11 @@ Rails.application.routes.draw do
     end
   end
 
+  namespace :admin do
+   resources :items, only: [:index, :show, :new]
+   resources :genres
+  end
+
   # 商品
   resources :items, controller: 'public/items', only: [:index, :show]
 

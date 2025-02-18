@@ -33,28 +33,28 @@ Item.create!(
   genre_id: 1,
   name: "ショートケーキ",
   introduction: "美味しい",
-  price_excluding_tax: "500",
+  price_excluding_tax: 500,
   is_sale: "true",
 )
 Item.create!(
   genre_id: 1,
   name: "チョコケーキ",
   introduction: "超美味しい",
-  price_excluding_tax: "400",
+  price_excluding_tax: 400,
   is_sale: "true",
 )
 Item.create!(
   genre_id: 1,
   name: "フルーツケーキ",
   introduction: "劇的に美味しい",
-  price_excluding_tax: "300",
+  price_excluding_tax: 300,
   is_sale: "true",
 )
 Item.create!(
   genre_id: 1,
   name: "いちごケーキ",
   introduction: "すごく美味しい",
-  price_excluding_tax: "100",
+  price_excluding_tax: 100,
   is_sale: "true",
 )
 

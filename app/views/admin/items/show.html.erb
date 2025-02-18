@@ -1,9 +1,9 @@
 <h1>商品詳細</h1>
 
     <% if @item.image.attached? %>
-      <%= image_tag @item.image.variant(resize: '200x200'), class: 'item-image' %>
+      <%= image_tag @item.get_image(400,300) %>
     <% else %>
-      <p>No image</p>
+      <%= image_tag "no_image.jpg", width: 400, height: 300 %> 
     <% end %>
 
     <table class="table">

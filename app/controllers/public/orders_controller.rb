@@ -14,7 +14,7 @@ class Public::OrdersController < ApplicationController
     # 商品合計額の計算
     ary = []
     @cart_items.each do |cart_item|
-      ary << cart_item.item.price*cart_item.quantity
+      ary << cart_item.item.price_excluding_tax*cart_item.amount
     end
     @cart_items_price = ary.sum # 商品の小計
     @total_price = @shipping_fee + @cart_items_price # 商品の小計+送料
@@ -46,15 +46,14 @@ class Public::OrdersController < ApplicationController
     @order.shipping_fee = 800
     @cart_items = CartItem.where(customer_id: current_customer.id)
 
-    # 商品小計・送料の計算viewに情報なし。必要？
-    #ary = []
-    #  @cart_items.each do |cart_item|
-    #    ary << cart_item.item.price*cart_item.quantity
-    #  end
-    #  @cart_items_price = ary.sum
-    #  @order.total_price = @order.shipping_fee + @cart_items_price
+    ary = []
+      @cart_items.each do |cart_item|
+        ary << cart_item.item.price_excluding_tax*cart_item.amount
+      end
+      @cart_items_price = ary.sum
+      @order.total_price = @order.shipping_fee + @cart_items_price
 
-    @order.payment_method = params[:order][:payment_method]
+    @order.payment_method = params[:order][:payment_method].presence || "credit_card"
     if @order.payment_method == "credit_card"
       @order.status = 1
     else
@@ -68,8 +67,8 @@ class Public::OrdersController < ApplicationController
       @order.address = current_customer.address
       @order.name = current_customer.last_name + current_customer.first_name
     when "registered_address"
-      Addresse.find(params[:order][:registered_address_id])
-      selected = Addresse.find(params[:order][:registered_address_id])
+      Address.find(params[:order][:registered_address_id])
+      selected = Address.find(params[:order][:registered_address_id])
       @order.post_code = selected.post_code
       @order.address = selected.address
       @order.name = selected.name
@@ -80,17 +79,18 @@ class Public::OrdersController < ApplicationController
     end
   
     if @order.save
+      session[:order_id] = @order.id # OrderのIDをセッションに保存
       if @order.status == 0
         @cart_items.each do |cart_item|
-          OrderDetail.create!(order_id: @order.id, item_id: cart_item.item.id, price: cart_item.item.price, quantity: cart_item.quantity, making_status: 0)
+          OrderDetail.create!(order_id: @order.reload.id, item_id: cart_item.item.id, purchase_price: cart_item.item.price_excluding_tax, quantity: cart_item.amount, status: 0)
         end
       else
         @cart_items.each do |cart_item|
-          OrderDetail.create!(order_id: @order.id, item_id: cart_item.item.id, price: cart_item.item.price, quantity: cart_item.quantity, making_status: 1)
+          OrderDetail.create!(order_id: @order.reload.id, item_id: cart_item.item.id, purchase_price: cart_item.item.price_excluding_tax, quantity: cart_item.amount, status: 1)
         end
       end
       @cart_items.destroy_all
-      redirect_to thanks_order_path
+      redirect_to thanks_orders_path
     else
       render :items
     end   
@@ -101,9 +101,8 @@ class Public::OrdersController < ApplicationController
   end
 
   def show # 注文履歴詳細画面
-           # ★findの値を1に仮設定
-    @order = Order.find(1)
-    @order_details= OrderDetail.where(order_id: @order.id)
+    @order = Order.find(params[:id])
+    @order_details = OrderDetail.where(order_id: @order.id)
   end
 
   def thanks # 注文完了画面

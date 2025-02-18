@@ -18,7 +18,7 @@ Rails.application.routes.draw do
 
   # 注文
   resources :orders, controller: 'public/orders', only:[:new, :create, :index, :show] do
-    member do
+    collection do
       post 'confirm'
       get 'thanks'
     end

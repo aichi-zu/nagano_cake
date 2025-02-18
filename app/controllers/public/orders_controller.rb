@@ -82,11 +82,11 @@ class Public::OrdersController < ApplicationController
       session[:order_id] = @order.id # OrderのIDをセッションに保存
       if @order.status == 0
         @cart_items.each do |cart_item|
-          OrderDetail.create!(order_id: @order.reload.id, item_id: cart_item.item.id, purchase_price: cart_item.item.price_excluding_tax, quantity: cart_item.amount, status: 0)
+          OrderDetail.create!(order_id: @order.reload.id, item_id: cart_item.item.id, purchase_price: (cart_item.item.price_excluding_tax*1.1).floor, quantity: cart_item.amount, status: 0)
         end
       else
         @cart_items.each do |cart_item|
-          OrderDetail.create!(order_id: @order.reload.id, item_id: cart_item.item.id, purchase_price: cart_item.item.price_excluding_tax, quantity: cart_item.amount, status: 1)
+          OrderDetail.create!(order_id: @order.reload.id, item_id: cart_item.item.id, purchase_price: (cart_item.item.price_excluding_tax*1.1).floor, quantity: cart_item.amount, status: 1)
         end
       end
       @cart_items.destroy_all

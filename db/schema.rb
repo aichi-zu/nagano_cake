@@ -128,7 +128,7 @@ ActiveRecord::Schema.define(version: 2025_02_18_024638) do
     t.integer "shipping_fee", null: false
     t.integer "total_price", null: false
     t.integer "payment_method", null: false
-    t.integer "status", null: false
+    t.integer "status", default: 0, null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["customer_id"], name: "index_orders_on_customer_id"

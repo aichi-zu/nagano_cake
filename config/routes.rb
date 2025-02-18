@@ -4,7 +4,14 @@ Rails.application.routes.draw do
       delete :destroy_all
     end
   end
-  resources :items, controller: 'public/items', only: [:index, :show]
+
+  namespace :public do
+   resources :items, only: [:index, :show] 
+  end
+  namespace :admin do
+   resources :items, only: [:index, :show, :new]
+   resources :genres
+  end
 
   resources :orders, controller: 'public/orders', only:[:new, :create, :index, :show] do
     member do

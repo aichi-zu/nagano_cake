@@ -18,9 +18,7 @@
           <!-- Adminログイン時のヘッダー -->
           <% if admin_signed_in? %>
             <li class="nav-item">
-              <a class = "nav-link text-light">
-                商品一覧
-              </a>
+             <%= link_to "商品一覧", admin_items_path, class: "text-light"  %>
             </li>
 
             <li class="nav-item">

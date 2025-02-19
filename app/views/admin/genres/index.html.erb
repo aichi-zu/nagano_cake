@@ -26,7 +26,7 @@
 <!-- end of ジャンル新規登録 -->
 
 <!-- ジャンル一覧・編集 -->
-<%= form_with model: @genre_new, url: admin_genres_path do |form_g_n| %>
+<%= form_with model: [:admin, @genre_new] do |form_g_n| %>
   <div class = "container">
     <div class = "row">
       <div class = "col-md-5">

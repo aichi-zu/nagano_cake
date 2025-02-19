@@ -10,11 +10,8 @@
   <% @cart_items.each do |cart_item| %>
     <tr>
       <td>
-      <!-- 画像設定なし回避 -->
-      <% if cart_item.item.image.present? %>
-        <%= image_tag cart_item.item.image, size: "100x80" %>
-        <% else %>
-        <p>画像なし</p>
+      <% if @item == Item.find(cart_item.item.id) %>
+        <%= image_tag @item.get_image(100, 80) %>
       <% end %>
         <strong><%= cart_item.item.name %></strong>
       </td>

@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
-  
+
   #顧客情報
   get '/customers/my_page', to: 'public/customers#show'
   get '/customers/information/edit', to: 'public/customers#edit'
@@ -50,7 +50,7 @@ Rails.application.routes.draw do
     registrations: "public/registrations",
     sessions: 'public/sessions'
   }
- 
+
   get "/about", to: "public/homes#about", as: "about"
 
   devise_for :users

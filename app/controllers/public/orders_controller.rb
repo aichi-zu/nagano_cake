@@ -14,7 +14,7 @@ class Public::OrdersController < ApplicationController
     # 商品合計額の計算
     ary = []
     @cart_items.each do |cart_item|
-      ary << cart_item.item.price_excluding_tax*cart_item.amount
+      ary << cart_item.item.price_excluding_tax * cart_item.amount
     end
     @cart_items_price = ary.sum # 商品の小計
     @total_price = @shipping_fee + @cart_items_price # 商品の小計+送料
@@ -98,11 +98,20 @@ class Public::OrdersController < ApplicationController
 
   def index # 注文履歴画面
     @orders = Order.where(customer_id: current_customer.id).order(created_at: :desc)
+    @orders.each do |order|
+      order_details = OrderDetail.where(order_id: order.id)
+      shipping_fee = order.shipping_fee.to_i
+      cart_items_price = order_details.sum { |detail| detail.purchase_price.to_i * detail.quantity.to_i }
+      order.total_price = shipping_fee + cart_items_price  # 合計金額を計算
+    end
   end
 
   def show # 注文履歴詳細画面
     @order = Order.find(params[:id])
     @order_details = OrderDetail.where(order_id: @order.id)
+    @shipping_fee = @order.shipping_fee.to_i
+    @cart_items_price = @order_details.sum { |detail| detail.purchase_price.to_i * detail.quantity.to_i }
+    @total_price = @shipping_fee + @cart_items_price
   end
 
   def thanks # 注文完了画面

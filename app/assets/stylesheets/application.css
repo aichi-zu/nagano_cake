@@ -22,9 +22,11 @@
   box-sizing: border-box;
 }
 
-.top_image {
-  background-image: url("/assets/top_image.webp");
- background-size: cover;
- background-position: center;
+.bg-custom {
+  background: #DBCDB8;
 }
 
+.bg-custom-sidebar {
+  background: #56322C;
+  color: white;
+}

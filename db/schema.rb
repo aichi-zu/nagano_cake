@@ -93,7 +93,7 @@ ActiveRecord::Schema.define(version: 2025_02_18_024638) do
   end
 
   create_table "genres", force: :cascade do |t|
-    t.string "name"
+    t.string "name", default: "", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end

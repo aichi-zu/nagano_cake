@@ -13,3 +13,18 @@
  *= require_tree .
  *= require_self
  */
+
+ @charset "UTF-8";
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.top_image {
+  background-image: url("/assets/top_image.webp");
+ background-size: cover;
+ background-position: center;
+}
+

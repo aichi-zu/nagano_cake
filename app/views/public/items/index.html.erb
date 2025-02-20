@@ -1,7 +1,24 @@
-<h1>商品一覧</h1>
-
-<% @items.each do |item| %>
-  <div>
-    <%= link_to item.name, item_path(item) %>
+<div class='container-fluid'>
+  <div class='row no-gutters'>
+    <div class='col-md-2 bg-custom-sidebar'>
+      <%= render 'temp/sidebar' %>
+    </div>
+    
+    <div class='col-md-10'>
+      <h3>商品一覧</h3>
+      <% @items.each do |item| %>
+        <table class= "item_index">
+          <tr>
+            <td><%= item.image %></td>
+            <td><%= link_to item.name, item_path(item) %></td>
+            <td><%= item.price_excluding_tax %></td>
+          </tr>
+        </table>
+      <% end %>
+    </div>
   </div>
-<% end %>
+</div>
+
+
+
+

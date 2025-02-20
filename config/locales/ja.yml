@@ -10,6 +10,11 @@ ja:
         in_production: "製作中"
         in_shipping: "発送準備中"
         done_shipping: "発送済み"
+
+  time:
+    formats:
+      default: "%Y/%m/%d %H:%M:%S"
+
   activerecord:
     errors:
       messages:
@@ -17,4 +22,3 @@ ja:
         restrict_dependent_destroy:
           has_one: "%{record}が存在しているので削除できません"
           has_many: "%{record}が存在しているので削除できません"
-

@@ -51,3 +51,28 @@
   background: #56322C;
   color: white;
 }
+
+ /* 顧客向け商品一覧ページネーションを中央に配置 */
+ .pagination-container {
+  display: flex;
+  justify-content: center;
+}
+
+  .pagination {
+    display: inline-block;
+  }
+
+  .pagination a, .pagination span {
+    padding: 5px 10px;
+    margin: 0 2px;
+  }
+
+  /* 商品一覧ページフォントサイズ */
+  .header-text {
+    font-size: 24px;
+  }
+  
+  .count-text {
+    font-size: 16px; 
+  }
+

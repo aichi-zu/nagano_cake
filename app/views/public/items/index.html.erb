@@ -1,21 +1,38 @@
 <div class='container-fluid'>
   <div class='row no-gutters'>
+
     <div class='col-md-2 bg-custom-sidebar'>
       <%= render 'temp/sidebar' %>
     </div>
     
     <div class='col-md-10'>
-      <h3>商品一覧</h3>
-      <% @items.each do |item| %>
-        <table class= "item_index">
-          <tr>
-            <td><%= item.image %></td>
-            <td><%= link_to item.name, item_path(item) %></td>
-            <td><%= item.price_excluding_tax %></td>
-          </tr>
-        </table>
+      <div class="p-3 mb-2">
+      <%= content_tag :div, class: "product-header" do %>
+        <%= content_tag :span, "商品一覧", class: "header-text" %>
+        <%= content_tag :span, "（全#{@total_item_count}件）", class: "count-text" %>
       <% end %>
+      </div>
+      <div class="row">
+        <% @items.each do |item| %>
+          <div class="col-md-3">
+            <div class="card border-0 mx-auto mt-4" style="height: auto;">
+              <div class="card-body py-0">
+                <%= link_to item_path(item) do %>
+                  <%= image_tag item.get_image(50, 50), class: "card-img-top" %>
+                <% end %>
+                <p class="card-title"><%= item.name %></p>
+                <p class="card-text">¥<%= item.price_excluding_tax %></p>
+              </div>
+            </div>
+          </div>
+        <% end %>
+      </div>
     </div>
+
+    <div class="pagination-container text-center">
+      <%= paginate @items %>
+    </div>
+
   </div>
 </div>
 

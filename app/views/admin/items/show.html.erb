@@ -35,10 +35,10 @@
                 <td class="col-sm-9"><%= @item.genre.name %></td>
               </tr>
               <tr>
-                <th class="col-sm-3">税抜価格（税込価格）</th>
+                <th class="col-sm-3">税込価格（税抜価格）</th>
                 <td class="col-sm-9">
-                  <%= number_with_delimiter(@item.price_excluding_tax) %> 円
-                  <%= number_with_delimiter(@tax_included_price) %> 円
+                  <%= number_with_delimiter(@tax_included_price)%>
+                  &#40;<%= number_with_delimiter(@item.price_excluding_tax) %>&#41;円
                 </td>
               </tr>             
               <tr>

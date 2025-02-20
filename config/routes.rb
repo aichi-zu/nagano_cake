@@ -27,7 +27,7 @@ Rails.application.routes.draw do
   end
 
   # 配送先
-  resources :addresses, only: [:index, :create, :edit, :update, :destroy]
+  resources :addresses, controller: 'public/addresses', only: [:index, :create, :edit, :update, :destroy]
 
   # root_path
   root to: "public/homes#top"

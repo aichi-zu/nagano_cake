@@ -13,3 +13,41 @@
  *= require_tree .
  *= require_self
  */
+
+ @charset "UTF-8";
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* ヘッダー・フッター背景色 */
+.bg-custom {
+  background: #DBCDB8;
+  height :80px;
+}
+
+/* ヘッダーロゴ */
+.logo-image {
+  background-image: url("../app/aseets/images/nagano_cake_logo.webp");
+  width: 65x;
+  height: 65px; 
+  background-size: auto;
+  background-repeat: no-repeat;
+}
+
+/* ヘッダーボタン */
+.nav_button {
+  background: #56322C;
+  color: white; 
+  border-radius : 10px;
+  padding: 10px;
+  margin: 10px;
+}
+
+/* ジャンルサイドバー */
+.bg-custom-sidebar {
+  background: #56322C;
+  color: white;
+}

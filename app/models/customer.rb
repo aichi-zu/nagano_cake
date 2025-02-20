@@ -8,7 +8,7 @@ class Customer < ApplicationRecord
   has_many :addresses
 
   def active?
-    self.is_active  # もしくは直接 `self.is_active == true` などで判定する
+    self.is_active
   end
   
 end

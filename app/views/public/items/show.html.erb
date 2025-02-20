@@ -1,0 +1,10 @@
+<h1>商品詳細ページ</h1>
+<%= form_with url: cart_items_path, method: :post, model: @cart_item do |f| %>
+  <%= f.hidden_field :item_id, value: @item.id %>
+  <p><%= @item.name %></p>
+  <p><%= @item.introduction %></p>
+  <p><%= @item.price_excluding_tax %>円</p>
+  <%= f.label :amount, "数量" %>
+  <%= f.number_field :amount, value: 1, min: 1 %>  
+  <%= f.submit "カートに入れる" %>
+<% end %>

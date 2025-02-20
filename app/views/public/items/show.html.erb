@@ -5,11 +5,11 @@
       <%= render 'temp/sidebar' %>
     </div>
 
-    <div class='col-md-3 mt-4'>
+    <div class='col-md-3 mt-4 mb-5'>
     <%= image_tag @item.get_image(300, 300), size: "300x300"%>
     </div>
 
-    <div class='col-md-5 mt-5'>
+    <div class='col-md-5 mt-5 mb-5'>
       <%= form_with url: cart_items_path, method: :post, model: @cart_item do |f| %>
         <%= f.hidden_field :item_id, value: @item.id %>
         <h4><%= @item.name %></h4>

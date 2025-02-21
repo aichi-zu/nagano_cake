@@ -1,36 +1,67 @@
-<h3>配送先登録/一覧</h3>
+<div class="container">
+  <div class="row" style="margin: 40px 0;">
+    <div class="col-lg-12 d-flex align-items-center justify-content-between">
+      <div class="title-background" style="background-color: #f0f0f0; padding: 0px 20px; border-radius: 4px; display: inline-block;">
+        <h4 style="margin: 0;">配送先登録/一覧</h4>
+      </div>
+    </div>
+  </div>
 
-<%= form_with model: Address.new do |f| %>
-  <%= f.label :post_code, "郵便番号(ハイフンなし)" %>
-  <%= f.text_field :post_code %><br>
-  <%= f.label :address, "住所" %>
-  <%= f.text_field :address %><br>
-  <%= f.label :name, "宛名" %>
-  <%= f.text_field :name %><br>
-  <%= f.submit '新規作成' %>
-<% end %>
+  <div class="row">
+    <div class="col-lg-12">
+      <%= form_with model: Address.new, class: "mb-3" do |f| %>
+        <div class="form-row">
+          <div class="col-md-4">
+            <%= f.label :post_code, "郵便番号(ハイフンなし)", class: "form-label" %>
+            <%= f.text_field :post_code, class: "form-control" %>
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="col-md-8">
+            <%= f.label :address, "住所", class: "form-label" %>
+            <%= f.text_field :address, class: "form-control" %>
+          </div>
+        </div>
+        <div class="form-row align-items-center">
+          <div class="col-md-4">
+            <%= f.label :name, "宛名", class: "form-label" %>
+            <%= f.text_field :name, class: "form-control" %>
+          </div>
+          <div class="col-md-auto">
+            <%= f.submit '新規登録', class: "btn btn-success mt-2" %>
+          </div>
+        </div>
+      <% end %>
 
-<table class="table">
-  <tr>
-    <td>郵便番号</td>
-    <td>住所</td>
-    <td>宛名</td>
-    <td></td>
-  </tr>
-  <% if @addresses.present? %>
-    <% @addresses.each do |address| %>
-      <tr>
-        <td><%= address.post_code %></td>
-        <td><%= address.address %></td>
-        <td><%= address.name %></td>
-        <td><%= link_to "編集する", edit_address_path(address) %>
-            <%= link_to "削除する", address_path(address), method: :delete %></td>
-      </tr>
-    <% end %>
-    <% else %>
-      <tr>
-        <td colspan="3">データがありません</td>
-      </tr>
-    <% end %>
-</table>
-
+      <table class="table table-bordered" style="margin-bottom: 200px;">
+        <thead style="background-color: #f0f0f0;">
+          <tr>
+            <th>郵便番号</th>
+            <th>住所</th>
+            <th>宛名</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+          <% if @addresses.present? %>
+            <% @addresses.each do |address| %>
+              <tr>
+                <td><%= address.post_code %></td>
+                <td><%= address.address %></td>
+                <td><%= address.name %></td>
+                <td>
+                  <%= link_to "編集する", edit_address_path(address), class: "btn btn-sm btn-success" %>
+                  <%= link_to "削除する", address_path(address), method: :delete, class: "btn btn-sm btn-danger" %>
+                </td>
+              </tr>
+            <% end %>
+          <% else %>
+            <tr>
+              <td colspan="4">データがありません</td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

@@ -57,7 +57,7 @@ class Public::OrdersController < ApplicationController
 
     @order.payment_method = params[:order][:payment_method].presence || "credit_card"
     if @order.payment_method == "credit_card"
-      @order.status = 0 #注文ステータス？1→0に変更
+      @order.status = 1 #注文ステータス？1→0に変更
     else
       @order.status = 0
     end

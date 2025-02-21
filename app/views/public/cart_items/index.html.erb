@@ -4,7 +4,9 @@
       <div class="title-background" style="background-color: #f0f0f0; padding: 0px 20px; border-radius: 4px; display: inline-block;">
         <h4 style="margin: 0;">ショッピングカート</h4>
       </div>
-      <%= link_to "カートを空にする", destroy_all_cart_items_path, method: :delete, data: { confirm: "本当にカートを空にしますか？" }, class: "btn btn-danger" %>
+      <% if @cart_items.present? %>
+        <%= link_to "カートを空にする", destroy_all_cart_items_path, method: :delete, data: { confirm: "本当にカートを空にしますか？" }, class: "btn btn-danger" %>
+      <% end %>
     </div>
   </div>
 
@@ -50,7 +52,7 @@
 
         <div class="d-flex justify-content-between align-items-center">
           <div>
-            <%= link_to "買い物を続ける", items_path, class: "btn btn-primary" %>
+            <%= link_to "買い物を続ける", root_path, class: "btn btn-primary" %>
           </div>
           <div class="text-right">
             <table class="table table-bordered" >
@@ -65,12 +67,14 @@
     </div>
   <% else %>
     <p>カートに商品は入っていません。</p>
-    <%= link_to "買い物を続ける", items_path, class: "btn btn-primary" %>
+    <%= link_to "買い物を続ける", root_path, class: "btn btn-primary" %>
   <% end %>
 
   <div class="row" style="margin-bottom: 200px;">
     <div class="col-lg-12 d-flex justify-content-center">
-      <%= link_to "情報入力に進む", new_order_path, class: "btn btn-success" %>
+       <% if @cart_items.present? %>
+          <%= link_to "情報入力に進む", new_order_path, class: "btn btn-success" %>
+        <% end %>
     </div>
   </div>
 

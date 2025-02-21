@@ -7,7 +7,7 @@
     <div class='col-md-10'>
     <img src="/assets/top_image.webp" class="img-fluid" alt=""> 
 
-    <h3 style="margin: 20px;">新着商品</h3>
+    <h3 style="margin: 20px;"><strong>新着商品</strong></h3>
     <div class="row">
     <% @items.each do |item| %>
       <div class="col-md-3">
@@ -17,13 +17,13 @@
               <%= image_tag item.get_image(50, 50), class: "card-img-top" %>
             <% end %>
             <p class="card-title"><%= item.name %></p>
-            <p class="card-text">¥<%= item.price_excluding_tax %></p>
+            <p class="card-text">¥<%= number_with_delimiter(item.price_excluding_tax) %></p>
           </div>
         </div>
       </div>
     <% end %>
-      <div class="col-md-12 text-right mb-5">
-        <%= link_to 'すべての商品を見る＞', items_path %>
+      <div class="col-md-12 text-right mb-5" >
+        <%= link_to 'すべての商品を見る＞', items_path, style: 'text-decoration: underline;' %>
       </div>
     </div>
     </div>

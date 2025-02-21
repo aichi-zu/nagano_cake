@@ -32,7 +32,7 @@
 .logo-image {
   background-image: url("../app/aseets/images/nagano_cake_logo.webp");
   width: 85x;
-  height: 85px; 
+  height: 85px;
   background-size: auto;
   background-repeat: no-repeat;
 }
@@ -41,7 +41,7 @@
 .nav_button {
   background: #56322C;
   text-decoration: none;
-  color: white; 
+  color: white;
   border-radius : 10px;
   padding: 10px;
   margin: 10px;
@@ -76,26 +76,31 @@
 }
 
  /* 顧客向け商品一覧ページネーションを中央に配置 */
- .pagination-container {
+.pagination-container {
   display: flex;
   justify-content: center;
 }
 
-  .pagination {
-    display: inline-block;
-  }
+.pagination {
+  display: inline-block;
+}
 
-  .pagination a, .pagination span {
-    padding: 5px 10px;
-    margin: 0 2px;
-  }
+.pagination a, .pagination span {
+  padding: 5px 10px;
+  margin: 0 2px;
+}
 
-  /* 商品一覧ページフォントサイズ */
-  .header-text {
-    font-size: 24px;
-  }
-  
-  .count-text {
-    font-size: 16px; 
-  }
+/* 商品一覧ページフォントサイズ */
+.header-text {
+  font-size: 24px;
+}
 
+.count-text {
+  font-size: 16px;
+}
+
+/* order_detailの商品合計位置調整 */
+.bottom_zero {
+  position: absolute;
+  bottom: 0;
+}

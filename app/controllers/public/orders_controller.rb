@@ -2,8 +2,7 @@ class Public::OrdersController < ApplicationController
   before_action :authenticate_customer!
 
   def new # 注文情報入力画面(支払方法・配送先の選択)/注文確定処理
-    # viweページのみ
-    # 処理はcreateに記述
+    @customer = current_customer
   end
 
   def confirm # 注文情報確認画面

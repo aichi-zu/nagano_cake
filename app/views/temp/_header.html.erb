@@ -1,4 +1,4 @@
-<%# 動的ヘッダーの部分テンプレートファイル　%>
+<%# 動的ヘッダーの部分テンプレートファイル %>
 <header>
   <nav class = "navbar navbar-expand-lg bg-custom ">
     <div class = container>
@@ -39,6 +39,10 @@
 
           <!-- Customerログイン時のヘッダー -->
           <% elsif customer_signed_in? %>
+             <li class="nav-item">
+              ようこそ、<%= @customer.last_name %><%= @customer.first_name %>さん！
+            </li>
+
             <li class="nav-item">
               <%= link_to 'マイページ', customers_my_page_path, class: "nav_button" %>
             </li>
@@ -74,10 +78,17 @@
             </li>
 
           <% end %>
-
         </ul>
-      </div>
 
+        <!-- 検索フォーム表示 -->
+        <div class="serch_form">
+          <%= form_with url: "#" do |form| %>
+            <%= form.text_field :keyword, placeholder: "search" %>
+            <%= form.submit "🔎" %>
+          <% end %>
+        </div>
+
+      </div>
     </div>
   </nav>
 </header>

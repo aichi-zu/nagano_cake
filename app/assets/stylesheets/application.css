@@ -25,14 +25,14 @@
 /* ヘッダー・フッター背景色 */
 .bg-custom {
   background: #DBCDB8;
-  height :80px;
+  height :100px;
 }
 
 /* ヘッダーロゴ */
 .logo-image {
   background-image: url("../app/aseets/images/nagano_cake_logo.webp");
-  width: 65x;
-  height: 65px; 
+  width: 80x;
+  height: 80px; 
   background-size: auto;
   background-repeat: no-repeat;
 }
@@ -40,10 +40,28 @@
 /* ヘッダーボタン */
 .nav_button {
   background: #56322C;
+  text-decoration: none;
   color: white; 
   border-radius : 10px;
   padding: 10px;
   margin: 10px;
+  }
+
+  .nav_button:hover {
+    text-decoration: none; /* マウスオーバー時のリンク下線を非表示にする */
+    color: white; /* マウスオーバー時の文字色を白にする */
+  }
+
+/* 検索フォームの親要素のスタイル */
+.navbar-collapse {
+  display: flex;
+  flex-direction: column;
+}
+
+/* 検索フォームのスタイル */
+.serch_form {
+  margin-top: 20px; /* 適宜調節してください */
+  margin-left: auto;
 }
 
 /* ジャンルサイドバー */

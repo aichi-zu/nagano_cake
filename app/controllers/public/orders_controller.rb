@@ -25,17 +25,20 @@ class Public::OrdersController < ApplicationController
     @address_type = params[:order][:address_type]
     case @address_type
     when "customer_address" # 会員登録の住所に配送
-      @selected_address = current_customer.post_code + " " + current_customer.address + " " + current_customer.last_name + current_customer.first_name
+      @selected_address = current_customer.post_code + " " + current_customer.address + " "
+      @selected_name = current_customer.last_name + current_customer.first_name
     when "registered_address" # 配送先登録済みの住所に配送
       unless params[:order][:registered_address_id] == ""
         selected = Address.find(params[:order][:registered_address_id])
-        @selected_address = selected.post_code + " " + selected.address + " " + selected.name
+        @selected_address = selected.post_code + " " + selected.address
+        @selected_name = selected.name
       else
         render :new
       end
     when "new_address" #新たな配送先住所に配送
         unless params[:order][:new_post_code] == "" && params[:order][:new_address] == "" && params[:order][:new_name] == ""
-        @selected_address = params[:order][:new_post_code] + " " + params[:order][:new_address] + " " + params[:order][:new_name]
+        @selected_address = params[:order][:new_post_code] + " " + params[:order][:new_address]
+        @selected_name = params[:order][:new_name]
       else
         render :new
       end

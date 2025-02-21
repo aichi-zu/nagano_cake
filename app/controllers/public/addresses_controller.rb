@@ -3,6 +3,7 @@ class Public::AddressesController < ApplicationController
 
   def index
     @addresses = Address.all
+    @customer = current_customer
   end
 
   def create
@@ -18,6 +19,7 @@ class Public::AddressesController < ApplicationController
 
   def edit
     @address = Address.find(params[:id])
+    @customer = current_customer
   end
 
   def update

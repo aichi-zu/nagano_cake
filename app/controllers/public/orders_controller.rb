@@ -4,6 +4,7 @@ class Public::OrdersController < ApplicationController
   def new # 注文情報入力画面(支払方法・配送先の選択)/注文確定処理
     # viweページのみ
     # 処理はcreateに記述
+    @customer = current_customer
   end
 
   def confirm # 注文情報確認画面
@@ -57,7 +58,7 @@ class Public::OrdersController < ApplicationController
 
     @order.payment_method = params[:order][:payment_method].presence || "credit_card"
     if @order.payment_method == "credit_card"
-      @order.status = 1 #注文ステータス？1→0に変更
+      @order.status = 0
     else
       @order.status = 0
     end

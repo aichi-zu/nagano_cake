@@ -18,6 +18,13 @@ class Admin::SessionsController < Devise::SessionsController
   #   super
   # end
 
+  def new
+    @admin = Admin.new
+    if customer_signed_in? && !admin_signed_in?
+      @customer = current_customer
+    end
+  end
+
   protected
     def after_sign_in_path_for(resource)
       admin_top_path

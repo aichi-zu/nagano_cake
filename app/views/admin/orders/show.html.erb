@@ -1,5 +1,4 @@
 <!-- 注文詳細画面(注文ステータス更新) -->
-<p><%= flash[:notice] %></p>
 <%= form_with model: [:admin, @order_update_target] do |form_o_u_t| %>
   <div class = "container">
     <div class = "row">
@@ -44,3 +43,33 @@
 <% end %>
 
 <!-- 注文詳細画面(製作ステータス更新) -->
+<div class = "container">
+  <div class = "row">
+    <div class = "col-md-9">
+      <table class = "table table-hover table-inverse">
+        <thead>
+          <th>商品名</th>
+          <th>単価(税込)</th>
+          <th>数量</th>
+          <th>小計</th>
+          <th>製作ステータス</th>
+        </thead>
+
+        <tbody>
+          <% @order_details_index.each do |order_detail| %>
+            <tr>
+              <%= form_with model: OrderDetail.find(order_detail.id), url: admin_order_orders_detail_path(order_detail.order_id, order_detail.id), method: :patch do |form_o_d_i| %>
+                <td><%= order_detail.item.name %></td>
+                <td><%= order_detail.purchase_price %></td>
+                <td><%= order_detail.quantity %></td>
+                <td><%= order_detail.order_detail_subtotal %></td>
+                <td><%= form_o_d_i.select :status, [["製作不可", :not_production], ["製作待ち", :wait_production], ["製作中", :in_production], ["製作完了", :done_production]] %></td>
+                <td><%= form_o_d_i.submit "更新", class: "btn btn-success" %></td>
+              <% end %>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

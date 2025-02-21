@@ -1,6 +1,7 @@
 class Public::CartItemsController < ApplicationController
  before_action :authenticate_customer!
   def index
+    @customer = current_customer
     @cart_items = current_customer.cart_items.includes(:item)
     @total_price = @cart_items.sum { |cart_item| cart_item.item.price_excluding_tax * cart_item.amount * 1.1 }
   end

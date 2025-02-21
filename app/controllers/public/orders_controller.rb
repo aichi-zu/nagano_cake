@@ -7,6 +7,7 @@ class Public::OrdersController < ApplicationController
   end
 
   def confirm # 注文情報確認画面
+    @customer = current_customer
     @cart_items = CartItem.where(customer_id: current_customer.id)
     @shipping_fee = 800
     @selected_payment_method = params[:order][:payment_method]
@@ -41,6 +42,7 @@ class Public::OrdersController < ApplicationController
   end
 
   def create # 注文情報入力画面(支払方法・配送先の選択)/注文確定処理
+    @customer = current_customer
     @order = Order.new
     @order.customer_id = current_customer.id
     @order.shipping_fee = 800
@@ -97,6 +99,7 @@ class Public::OrdersController < ApplicationController
   end
 
   def index # 注文履歴画面
+    @customer = current_customer
     @orders = Order.where(customer_id: current_customer.id).order(created_at: :desc)
     @orders.each do |order|
       order_details = OrderDetail.where(order_id: order.id)
@@ -107,6 +110,7 @@ class Public::OrdersController < ApplicationController
   end
 
   def show # 注文履歴詳細画面
+    @customer = current_customer
     @order = Order.find(params[:id])
     @order_details = OrderDetail.where(order_id: @order.id)
     @shipping_fee = @order.shipping_fee.to_i
@@ -115,6 +119,7 @@ class Public::OrdersController < ApplicationController
   end
 
   def thanks # 注文完了画面
+    @customer = current_customer
   end
 
 end

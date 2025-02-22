@@ -7,10 +7,9 @@
     </div>
   </div>
 
-  <div class="row">
-    <div class="col-lg-12">
-      <%= form_with model: @customer, url: customers_information_path, method: :patch do |f| %>
-
+  <%= form_with model: @customer, url: customers_information_path do |f| %>
+    <div class="row">
+      <div class="col-md-6">
         <table class="table">
           <tbody>
             <tr>
@@ -66,8 +65,7 @@
             </div>
           </div>
         </div>
-
       <% end %>
     </div>
-  </div>
+  <% end %>
 </div>

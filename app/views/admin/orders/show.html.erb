@@ -73,5 +73,30 @@
         </tbody>
       </table>
     </div>
+
+    <div class = "col-md-3">
+      <table class = "bottom_zero table table-hover table-inverse">
+        <tbody>
+          <tr>
+            <!-- 小計算出 -->
+            <% total_price = 0 %>
+            <% @order_details_index.each do |order_detail| %>
+              <% total_price += order_detail.order_detail_subtotal %>
+            <% end %>
+
+            <td>商品合計</td>
+            <td><%= total_price %>円</td>
+          </tr>
+          <tr>
+            <td>送料</td>
+            <td><%= Order.find(params[:id]).shipping_fee %>円</td>
+          </tr>
+          <tr>
+            <td>請求金額合計</td>
+            <td><%= total_price + Order.find(params[:id]).shipping_fee %>円</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
   </div>
 </div>

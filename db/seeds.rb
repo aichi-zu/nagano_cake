@@ -17,9 +17,9 @@ Customer.create!(
   first_name: "mei",
   last_name_kana: "sei_kana",
   first_name_kana: "mei_kana",
-  post_code: "123-4567",
+  post_code: "1234567",
   address: "my address",
-  phone_number: "1234-56-7890",
+  phone_number: "1234567890",
   email: "customer@mail.com",
   password: "123456",
   is_active: true

@@ -35,5 +35,4 @@ class Order < ApplicationRecord
     end
     return sum
   end
-
 end

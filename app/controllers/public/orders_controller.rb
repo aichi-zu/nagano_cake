@@ -36,7 +36,7 @@ class Public::OrdersController < ApplicationController
         render :new
       end
     when "new_address" #新たな配送先住所に配送
-        unless params[:order][:new_post_code] == "" && params[:order][:new_address] == "" && params[:order][:new_name] == ""
+      unless params[:order][:new_post_code] == "" && params[:order][:new_address] == "" && params[:order][:new_name] == ""
         @selected_address = params[:order][:new_post_code] + " " + params[:order][:new_address]
         @selected_name = params[:order][:new_name]
       else

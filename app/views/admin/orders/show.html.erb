@@ -1,9 +1,11 @@
 <!-- 注文詳細画面(注文ステータス更新) -->
 <%= form_with model: [:admin, @order_update_target] do |form_o_u_t| %>
   <div class = "container">
-    <div class = "row">
-      <div class = "col-lg-3">
-        <h4>注文履歴詳細</h4>
+    <div class="row" style="margin: 40px 0;">
+      <div class="col-lg-12 d-flex align-items-center justify-content-between">
+        <div class="title-background" style="background-color: #f0f0f0; padding: 0px 20px; border-radius: 4px; display: inline-block;">
+          <h4 style="margin: 0;">注文履歴詳細</h4>
+        </div>
       </div>
     </div>
 
@@ -12,26 +14,26 @@
         <table class = "table table-hover table-inverse">
           <tbody>
             <tr>
-              <td>購入者</td>
+              <td><strong>購入者</strong></td>
               <td><%= "#{@order_update_target.customer.last_name} #{@order_update_target.customer.first_name}" %></td>
             </tr>
             <tr>
-              <td>注文日</td>
+              <td><strong>注文日</strong></td>
               <td><%= l @order_update_target.created_at %></td>
             </tr>
             <tr>
-              <td>配送先</td>
+              <td><strong>配送先</strong></td>
               <td>
                 <%= @order_update_target.address %></br>
                 <%= @order_update_target.name %>
               </td>
             </tr>
             <tr>
-              <td>支払い方法</td>
+              <td><strong>支払い方法</strong></td>
               <td><%= @order_update_target.payment_method_i18n %></td>
             </tr>
             <tr>
-              <td>注文ステータス</td>
+              <td><strong>注文ステータス</strong></td>
               <td><%= form_o_u_t.select :status, [["入金待ち", :wait_payment], ["入金確認", :confirm_payment], ["製作中", :in_production], ["発送準備中", :in_shipping], ["発送済み", :done_shipping]] %></td>
               <td><%= form_o_u_t.submit "更新", class: "btn btn-success" %></td>
             </tr>

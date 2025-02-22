@@ -42,7 +42,7 @@ class Public::OrdersController < ApplicationController
       else
         render :new
       end
-    end     
+    end
   end
 
   def create # 注文情報入力画面(支払方法・配送先の選択)/注文確定処理
@@ -65,7 +65,7 @@ class Public::OrdersController < ApplicationController
     else
       @order.status = 0
     end
-    
+
     address_type = params[:order][:address_type]
     case address_type
     when "customer_address"
@@ -83,7 +83,7 @@ class Public::OrdersController < ApplicationController
       @order.address = params[:order][:new_address]
       @order.name = params[:order][:new_name]
     end
-  
+
     if @order.save
       session[:order_id] = @order.id # OrderのIDをセッションに保存
       if @order.status == 0
@@ -99,7 +99,7 @@ class Public::OrdersController < ApplicationController
       redirect_to thanks_orders_path
     else
       render :items
-    end   
+    end
   end
 
   def index # 注文履歴画面

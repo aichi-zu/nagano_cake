@@ -16,7 +16,7 @@ class Public::OrdersController < ApplicationController
     # 商品合計額の計算
     ary = []
     @cart_items.each do |cart_item|
-      ary << cart_item.item.price_excluding_tax * cart_item.amount
+      ary << (cart_item.item.price_excluding_tax * 1.1).floor * cart_item.amount
     end
     @cart_items_price = ary.sum # 商品の小計
     @total_price = @shipping_fee + @cart_items_price # 商品の小計+送料

@@ -17,12 +17,12 @@ Customer.create!(
   first_name: "mei",
   last_name_kana: "sei_kana",
   first_name_kana: "mei_kana",
-  post_code: "123-4567",
-  address: "totemoyoitokoro",
-  phone_number: "1234-56-7890",
+  post_code: "1234567",
+  address: "my address",
+  phone_number: "1234567890",
   email: "customer@mail.com",
-  password: "654321",
-  is_active: "true"
+  password: "123456",
+  is_active: true
 )
 
 Genre.create!(
@@ -40,29 +40,29 @@ Genre.create!(
 
 Item.create!(
   genre_id: 1,
-  name: "ショートケーキ",
-  introduction: "美味しい",
-  price_excluding_tax: 500,
-  is_sale: "true",
-)
-Item.create!(
-  genre_id: 1,
-  name: "チョコケーキ",
-  introduction: "超美味しい",
-  price_excluding_tax: 400,
-  is_sale: "true",
-)
-Item.create!(
-  genre_id: 1,
-  name: "フルーツケーキ",
-  introduction: "劇的に美味しい",
-  price_excluding_tax: 300,
-  is_sale: "true",
-)
-Item.create!(
-  genre_id: 1,
-  name: "いちごケーキ",
-  introduction: "すごく美味しい",
+  name: "イチゴケーキ",
+  introduction: "とてもおいしいイチゴケーキ",
   price_excluding_tax: 100,
-  is_sale: "true",
+  is_sale: true,
+)
+Item.create!(
+  genre_id: 2,
+  name: "プリン",
+  introduction: "とてもおいしいプリン",
+  price_excluding_tax: 200,
+  is_sale: true,
+)
+Item.create!(
+  genre_id: 3,
+  name: "クッキー",
+  introduction: "とてもおいしいクッキー",
+  price_excluding_tax: 300,
+  is_sale: true,
+)
+Item.create!(
+  genre_id: 4,
+  name: "カラフルキャンディ",
+  introduction: "とてもおいしいカラフルキャンディ",
+  price_excluding_tax: 400,
+  is_sale: true,
 )

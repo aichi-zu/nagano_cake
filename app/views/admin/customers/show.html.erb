@@ -2,7 +2,7 @@
   <div class="row" style="margin: 40px 0;">
     <div class="col-lg-12 d-flex align-items-center justify-content-between">
       <div class="title-background" style="background-color: #f0f0f0; padding: 0px 20px; border-radius: 4px;">
-        <h4><%= "#{@customer.last_name}#{@customer.first_name}さんの会員詳細" %></h4>
+        <h4 style="margin: 0;"><%= "#{@customer.last_name}#{@customer.first_name}さんの会員詳細" %></h4>
       </div>
     </div>
   </div>
@@ -27,7 +27,7 @@
               </tr>
               <tr>
                 <th>郵便番号</th>
-                <td><%= @customer.post_code %></td>
+                <td>〒<%= @customer.post_code %></td>
               </tr>
               <tr>
                 <th>住所</th>
@@ -52,7 +52,7 @@
               <tr>
                 <th></th>
                 <td>
-                  <%= link_to '編集する', edit_admin_customer_path(@customer), class: 'btn btn-success me-50' %>
+                  <%= link_to '編集する', edit_admin_customer_path(@customer), class: 'btn btn-success me-3' %>
                   <%= link_to '注文履歴一覧を見る', admin_top_path, class: 'btn btn-primary' %>
                 </td>
               </tr>

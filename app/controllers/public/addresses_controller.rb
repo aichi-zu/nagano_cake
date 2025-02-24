@@ -3,19 +3,24 @@ class Public::AddressesController < ApplicationController
 
   def index
     @addresses = Address.all
+    @customer = current_customer
   end
 
   def create
-    @address = current_customer.Address.new(address_params)
+    @customer = current_customer
+    @address = Address.new(address_params)
+    @address.customer_id = current_customer.id
     if @address.save
       redirect_to addresses_path
     else
-      render :new
+      @addresses = current_customer.addresses
+      render :index
     end
   end
 
   def edit
     @address = Address.find(params[:id])
+    @customer = current_customer
   end
 
   def update
@@ -31,7 +36,7 @@ class Public::AddressesController < ApplicationController
   def destroy
     @address = Address.find(params[:id])
     @address.destroy
-    redirect_to addresses_path
+    redirect_to addresses_path, notice: "配送先一覧から配送先を削除しました"
   end
 
   private

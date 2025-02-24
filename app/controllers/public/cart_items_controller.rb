@@ -1,6 +1,7 @@
 class Public::CartItemsController < ApplicationController
  before_action :authenticate_customer!
   def index
+    @customer = current_customer
     @cart_items = current_customer.cart_items.includes(:item)
     @total_price = @cart_items.sum { |cart_item| cart_item.item.price_excluding_tax * cart_item.amount * 1.1 }
   end
@@ -30,14 +31,22 @@ class Public::CartItemsController < ApplicationController
     @cart_item.customer_id=current_customer.id
     @cart_items=current_customer.cart_items.all
     @cart_items.each do |cart_item|
-     if cart_item.item_id==@cart_item.item_id
-      new_amount = cart_item.amount + @cart_item.amount
-       cart_item.update_attribute(:amount, new_amount)
-       @cart_item.delete
-     end
+      if cart_item.item_id == @cart_item.item_id
+        new_amount = cart_item.amount + @cart_item.amount
+        cart_item.update_attribute(:amount, new_amount)
+        @cart_item.delete
+
+        redirect_to cart_items_path, notice:"カートに追加しました"
+        return
+
+      end
     end
-     @cart_item.save
-     redirect_to cart_items_path,notice:"カートに追加しました"
+    if @cart_item.save
+      redirect_to cart_items_path, notice:"カートに追加しました"
+    else
+      flash[:alert] = "カートに商品を追加できませんでした。"
+      redirect_to request.referer
+    end
   end
 
   private
@@ -47,4 +56,3 @@ class Public::CartItemsController < ApplicationController
   end
 
 end
-

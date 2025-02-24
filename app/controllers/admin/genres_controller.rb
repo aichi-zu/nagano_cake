@@ -12,7 +12,7 @@ class Admin::GenresController < ApplicationController
     if @genre_new.save
       redirect_to admin_genres_path
     else
-      render :new
+      redirect_to admin_genres_path
     end
   end
 
@@ -26,7 +26,8 @@ class Admin::GenresController < ApplicationController
     if @genre_update_target.update(genre_params)
       redirect_to admin_genres_path
     else
-      render :edit
+      flash[:alert] = "ジャンル情報を更新できませんでした。"
+      redirect_to edit_admin_genre_path
     end
   end
 

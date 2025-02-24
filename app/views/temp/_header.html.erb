@@ -1,10 +1,11 @@
-<%# 動的ヘッダーの部分テンプレートファイル　%>
+<%# 動的ヘッダーの部分テンプレートファイル %>
 <header>
-  <nav class = "navbar navbar-expand-lg navbar-dark bg-dark">
+  <nav class = "navbar navbar-expand-lg bg-custom ">
     <div class = container>
 
+      <!-- assetのパス確認 --> 
       <a class = "navbar-brand" href = "/">
-        <span>ながのCAKE(仮)</span>
+        <img src="<%= asset_url('nagano_cake_logo.webp') %>" alt="サイトロゴ" class="logo-image">
       </a>
 
       <button class="navbar-toggler collapsed" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
@@ -14,95 +15,80 @@
       <div class="collapse navbar-collapse" id="navbarNavDropdown">
         <ul class="navbar-nav ml-auto">
 
-          <!-- Adminログイン時のヘッダー -->
-          <% if admin_signed_in? %>
-            <li class="nav-item">
-              <a class = "nav-link text-light" href = "<%= admin_items_path %>">
-                商品一覧
-              </a>
-            </li>
-
-            <li class="nav-item">
-              <a class = "nav-link text-light" href = "<%= admin_customers_path %>">
-                会員一覧
-              </a>
-            </li>
-
-            <li class="nav-item">
-              <a class = "nav-link text-light" href = "<%= admin_top_path %>">
-                注文履歴一覧
-              </a>
-            </li>
-
-            <li class="nav-item">
-              <a class = "nav-link text-light" href = "<%= admin_genres_path %>">
-                ジャンル一覧
-              </a>
-            </li>
-
-            <li class="nav-item">
-              <a class = "nav-link text-light" href = "<%= destroy_admin_session_path %>" data-method = "delete">
-                ログアウト
-              </a>
-            </li>
-
           <!-- Customerログイン時のヘッダー -->
-          <% elsif customer_signed_in? %>
-            <li class="nav-item">
-              <a class = "nav-link text-light" href = "<%= customers_my_page_path %>">
-                マイページ
-              </a>
+          <% if customer_signed_in? && !admin_signed_in? %>
+             <li class="nav-item">
+              ようこそ、<%= @customer.last_name %><%= @customer.first_name %>さん！
             </li>
 
             <li class="nav-item">
-              <a class = "nav-link text-light" href = "<%= items_path %>">
-                商品一覧
-              </a>
+              <%= link_to 'マイページ', customers_my_page_path, class: "nav_button" %>
             </li>
 
             <li class="nav-item">
-              <a class = "nav-link text-light" href = "<%= cart_items_path %>">
-                カート
-              </a>
+              <%= link_to '商品一覧', items_path, class: "nav_button" %>
             </li>
 
             <li class="nav-item">
-              <a class = "nav-link text-light" href = "<%= destroy_customer_session_path %>" data-method = "delete">
-                ログアウト
-              </a>
+              <%= link_to 'カート', cart_items_path, class: "nav_button" %>
+            </li>
+
+            <li class="nav-item">
+              <%= link_to "ログアウト", destroy_customer_session_path, method: :delete, class: "nav_button" %>
+            </li>
+
+          <!-- Adminログイン時のヘッダー -->
+          <% elsif admin_signed_in? %>
+            <li class="nav-item">
+              <%= link_to '商品一覧', admin_items_path, class: "nav_button" %>
+            </li>
+
+            <li class="nav-item">
+              <%= link_to '会員一覧', admin_customers_path, class: "nav_button" %>
+            </li>
+
+            <li class="nav-item">
+              <%= link_to '注文履歴一覧', admin_top_path, class: "nav_button" %>
+            </li>
+
+            <li class="nav-item">
+              <%= link_to 'ジャンル一覧', admin_genres_path, class: "nav_button" %>
+            </li>
+
+            <li class="nav-item">
+              <%= link_to 'ログアウト', destroy_admin_session_path, method: :delete, class: "nav_button" %>
             </li>
 
           <!-- 非ログイン時のヘッダー -->
           <% else %>
             <li class="nav-item">
-              <a class = "nav-link text-light" href = "<%= about_path %>">
-                About
-              </a>
+              <%= link_to 'About', about_path, class: "nav_button" %>
             </li>
 
             <li class="nav-item">
-              <a class = "nav-link text-light" href = "<%= items_path %>">
-                商品一覧
-              </a>
+              <%= link_to '商品一覧', items_path, class: "nav_button" %>
             </li>
 
             <li class="nav-item">
-              <a class = "nav-link text-light" href = "<%= new_customer_registration_path %>">
-                新規登録
-              </a>
+              <%= link_to '新規登録', new_customer_registration_path, class: "nav_button" %>
             </li>
 
             <li class="nav-item">
-              <a class = "nav-link text-light" href = "<%= new_customer_session_path %>">
-                ログイン
-              </a>
+              <%= link_to 'ログイン', new_customer_session_path, class: "nav_button" %>
             </li>
 
           <% end %>
-
         </ul>
-      </div>
 
+        <!-- 検索フォーム表示 -->
+        <div class="serch_form">
+          <%= form_with url: "#" do |form| %>
+            <%= form.text_field :keyword, placeholder: "search" %>
+            <%= form.submit "🔎" %>
+          <% end %>
+        </div>
+
+      </div>
     </div>
   </nav>
 </header>

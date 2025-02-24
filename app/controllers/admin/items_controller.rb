@@ -1,4 +1,6 @@
 class Admin::ItemsController < ApplicationController
+  before_action :authenticate_admin!
+
   def index
     @items = Item.all.includes(:genre).page(params[:page])
   end
@@ -34,6 +36,7 @@ class Admin::ItemsController < ApplicationController
       redirect_to admin_item_path(@item), notice: "商品情報を更新しました"
     else
       @genres = Genre.all
+      flash[:alert] = "商品情報を更新できませんでした。"
       render :edit
     end
   end

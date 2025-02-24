@@ -22,7 +22,7 @@ class Public::SessionsController < Devise::SessionsController
 
   protected
     def after_sign_in_path_for(resource)
-      customers_my_page_path
+      root_path
     end
 
     def after_sign_out_path_for(resource)
@@ -41,6 +41,7 @@ class Public::SessionsController < Devise::SessionsController
     return unless customer.valid_password?(params[:customer][:password])
     # 【処理内容4】 アクティブでない会員に対する処理
     unless customer.active?
+      flash[:alert] = "該当の会員は、退会済みです。"
       redirect_to new_customer_session_path
       return
     end

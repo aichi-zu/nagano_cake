@@ -13,3 +13,112 @@
  *= require_tree .
  *= require_self
  */
+
+ @charset "UTF-8";
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* ヘッダー・フッター背景色 */
+.bg-custom {
+  background: #DBCDB8;
+  height :100px;
+}
+
+/* ヘッダーロゴ */
+.logo-image {
+  width: 85px;
+  height: 85px;
+  background-size: auto;
+  background-repeat: no-repeat;
+}
+
+/* ヘッダーボタン */
+.nav_button {
+  background: #56322C;
+  text-decoration: none;
+  color: white;
+  border-radius : 10px;
+  padding: 10px;
+  margin: 10px;
+  }
+
+  .nav_button:hover {
+    text-decoration: none; /* マウスオーバー時のリンク下線を非表示にする */
+    color: white; /* マウスオーバー時の文字色を白にする */
+  }
+
+/* 検索フォームの親要素のスタイル */
+.navbar-collapse {
+  display: flex;
+  flex-direction: column;
+}
+
+/* 検索フォームのスタイル */
+.serch_form {
+  margin-top: 20px; /* 適宜調節してください */
+  margin-left: auto;
+}
+
+/* サイドバーありcontainer背景色 */
+.container-sidber {
+  background: #56322C;
+}
+
+/* ジャンルサイドバー */
+.bg-custom-sidebar {
+  background: #56322C;
+  color: white;
+}
+
+ /* 顧客向け商品一覧ページネーションを中央に配置 */
+.pagination-container {
+  display: flex;
+  justify-content: center;
+}
+
+.pagination {
+  display: inline-block;
+}
+
+.pagination a, .pagination span {
+  padding: 5px 10px;
+  margin: 0 2px;
+}
+
+/* 商品一覧ページフォントサイズ */
+.header-text {
+  font-size: 24px;
+}
+
+.count-text {
+  font-size: 16px;
+}
+
+/* order_detailの商品合計位置調整 */
+.bottom_zero {
+  position: absolute;
+  bottom: 0;
+}
+
+/* フラッシュメッセージ */
+.flash-message {
+  border-radius: 5px;
+  padding: 16px 24px;
+  margin: 16px 0px;
+}
+
+.flash-message.notice {
+  background-color: #bcdfff;
+  color: #0067C0;
+  border: solid 1px #0067C0;
+}
+
+.flash-message.alert {
+  background-color: #ffd4d1;
+  color: #930403;
+  border: solid 1px #930403;
+}

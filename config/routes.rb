@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
-  
+
   #顧客情報
   get '/customers/my_page', to: 'public/customers#show'
   get '/customers/information/edit', to: 'public/customers#edit'
@@ -27,7 +27,7 @@ Rails.application.routes.draw do
   end
 
   # 配送先
-  resources :addresses, only: [:index, :create, :edit, :update, :destroy]
+  resources :addresses, controller: 'public/addresses', only: [:index, :create, :edit, :update, :destroy]
 
   # root_path
   root to: "public/homes#top"
@@ -40,8 +40,9 @@ Rails.application.routes.draw do
     resources :items,         only: [:index, :new, :create, :show, :edit, :update]
     resources :genres,        only: [:index, :create, :edit, :update]
     resources :customers,     only: [:index, :show, :edit, :update]
-    resources :orders,        only: [:show, :update]
-    resources :order_details, only: [:update]
+    resources :orders,        only: [:show, :update] do
+      resources :orders_details, only: [:update]
+    end
   end
   get "/admin", to: "admin/homes#top", as: "admin/top"
 
@@ -50,7 +51,7 @@ Rails.application.routes.draw do
     registrations: "public/registrations",
     sessions: 'public/sessions'
   }
- 
+
   get "/about", to: "public/homes#about", as: "about"
 
   devise_for :users

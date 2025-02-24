@@ -24,26 +24,26 @@
              <tbody>
                 <tr>
                   <th class="col-sm-12">商品名</th>
-                  <td class="col-sm-9 "><%= @item.name %></td>
+                  <td class="col-sm-12 "><%= @item.name %></td>
                 </tr>
                 <tr>
                   <th class="col-sm-12">商品説明</th>
-                  <td class="col-sm-9"><%= @item.introduction %></td>
+                  <td class="col-sm-12"><%= @item.introduction %></td>
                 </tr>
                 <tr>
                   <th class="col-sm-12">ジャンル</th>
-                  <td class="col-sm-9"><%= @item.genre.name %></td>
+                  <td class="col-sm-12"><%= @item.genre.name %></td>
                 </tr>
                 <tr>
                   <th class="col-sm-12" >税込価格（税抜価格）</th>
-                  <td class="col-sm-9">
+                  <td class="col-sm-12">
                     <%= number_with_delimiter(@tax_included_price)%>
                     &#40;<%= number_with_delimiter(@item.price_excluding_tax) %>&#41;円
                   </td>
                 </tr>             
                 <tr>
                   <th class="col-sm-12">販売ステータス</th>
-                  <td class="col-sm-9">
+                  <td class="col-sm-12">
                     <% if @item.is_sale? %>
                       <span class="text-success" style="font-weight: bold;">販売中</span>
                     <% else %>

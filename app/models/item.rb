@@ -7,6 +7,11 @@ class Item < ApplicationRecord
   belongs_to :genre
   has_one_attached :image
   
+  validates :name, presence: true
+  validates :introduction, presence: true
+  validates :genre_id, presence: true
+  validates :price_excluding_tax, presence: true, numericality: { only_integer: true, greater_than_or_equal_to: 0 }
+
   def with_tax_price
     (price_excluding_tax * 1.1).floor
   end

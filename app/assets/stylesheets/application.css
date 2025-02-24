@@ -30,8 +30,7 @@
 
 /* ヘッダーロゴ */
 .logo-image {
-  background-image: url("../app/aseets/images/nagano_cake_logo.webp");
-  width: 85x;
+  width: 85px;
   height: 85px;
   background-size: auto;
   background-repeat: no-repeat;
@@ -111,13 +110,13 @@
   padding: 16px 24px;
   margin: 16px 0px;
 }
- 
+
 .flash-message.notice {
   background-color: #bcdfff;
   color: #0067C0;
   border: solid 1px #0067C0;
 }
- 
+
 .flash-message.alert {
   background-color: #ffd4d1;
   color: #930403;

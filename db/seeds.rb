@@ -40,29 +40,29 @@ Genre.create!(
 
 Item.create!(
   genre_id: 1,
-  name: "イチゴのケーキ",
-  introduction: "イチゴがのったケーキ",
+  name: "イチゴケーキ",
+  introduction: "とてもおいしいイチゴケーキ",
   price_excluding_tax: 100,
   is_sale: true,
 )
 Item.create!(
   genre_id: 2,
-  name: "チョコのプリン",
-  introduction: "チョコでできたプリン",
+  name: "プリン",
+  introduction: "とてもおいしいプリン",
   price_excluding_tax: 200,
   is_sale: true,
 )
 Item.create!(
   genre_id: 3,
-  name: "マドレーヌ",
-  introduction: "口溶けのよいマドレーヌ",
+  name: "クッキー",
+  introduction: "とてもおいしいクッキー",
   price_excluding_tax: 300,
   is_sale: true,
 )
 Item.create!(
   genre_id: 4,
-  name: "ミルクのキャンディ",
-  introduction: "濃厚なミルクのキャンディ",
+  name: "カラフルキャンディ",
+  introduction: "とてもおいしいカラフルキャンディ",
   price_excluding_tax: 400,
   is_sale: true,
 )

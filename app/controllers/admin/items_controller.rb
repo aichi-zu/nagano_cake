@@ -36,7 +36,8 @@ class Admin::ItemsController < ApplicationController
       redirect_to admin_item_path(@item), notice: "商品情報を更新しました"
     else
       @genres = Genre.all
-      render :edit, notice: "商品情報を更新できませんでした"
+      flash[:alert] = "商品情報を更新できませんでした。"
+      render :edit
     end
   end
 

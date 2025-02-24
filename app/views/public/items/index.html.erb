@@ -4,7 +4,7 @@
     <div class='col-md-2 bg-custom-sidebar'>
       <%= render 'temp/sidebar' %>
     </div>
-    
+
     <div class='col-md-10'>
       <div class="p-3 mb-2">
       <%= content_tag :div, class: "product-header" do %>
@@ -18,7 +18,7 @@
             <div class="card border-0 mx-auto mt-4" style="height: auto;">
               <div class="card-body py-0">
                 <%= link_to item_path(item) do %>
-                  <%= image_tag item.get_image(50, 50), class: "card-img-top" %>
+                  <%= image_tag item.get_image(300, 300), class: "card-img-top" %>
                 <% end %>
                 <p class="card-title"><%= item.name %></p>
                 <p class="card-text">¥<%= number_with_delimiter(item.price_excluding_tax) %></p>
@@ -35,7 +35,3 @@
 
   </div>
 </div>
-
-
-
-

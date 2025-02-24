@@ -26,6 +26,7 @@ class Admin::GenresController < ApplicationController
     if @genre_update_target.update(genre_params)
       redirect_to admin_genres_path
     else
+      flash[:alert] = "ジャンル情報を更新できませんでした。"
       redirect_to edit_admin_genre_path
     end
   end
